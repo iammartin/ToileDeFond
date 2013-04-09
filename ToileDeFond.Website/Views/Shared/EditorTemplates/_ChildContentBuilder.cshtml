@@ -1,0 +1,10 @@
+﻿@using System.Reflection
+@using System.Text
+@using ToileDeFond.Modularity.Web.Metadata
+@model ToileDeFond.ContentManagement.Content
+
+
+<div class="form-horizontal">
+    <input type="text" disabled="disabled" class="child-content-name" placeholder="No Content" />
+    <input type="hidden" id="@ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldId("")" name="@ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName("")" /> <button class="btn btn-primary edit-child-content">Edit</button> <button class="btn btn-danger clear-child-content">Clear</button>
+</div>

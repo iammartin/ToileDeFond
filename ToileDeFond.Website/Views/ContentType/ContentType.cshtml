@@ -1,0 +1,44 @@
+﻿@using System.Text
+@model ToileDeFond.Website.Administration.Models.ContentTypeViewModel
+
+@if (Model.ContentType != null)
+{
+<div class="row">
+    <div class="span12">
+        <a href="@(new StringBuilder("/admin/edit-content-type-property")
+            .AddQueryParam("contenttypefullname", Model.ContentType.FullName))" class="btn btn-large pull-right btn-success">Create property</a>
+        <p><a href="@("/admin/contents?contenttypefullname=" + @Model.ContentType.FullName)">Manage contents of this type</a></p>
+    </div>
+</div>
+ <div class="row">
+    <div class="span12">   
+        <fieldset>
+            <legend>Properties of content type @Model.ContentType.Name</legend>
+            @if (Model.ContentType.Properties.Any())
+            {
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Property Name</th>
+                        <th>Is Culture Invariant</th>
+                        <th>Type Name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var contentTypeProperty in Model.ContentType.Properties)
+                {
+                    <tr>
+                        <td>@contentTypeProperty.Name</td>
+                        <td>@contentTypeProperty.IsCultureInvariant</td>
+                        <td><a href="@(new StringBuilder("/admin/delete-content-type-property")
+                            .AddQueryParam("propertyfullname", contentTypeProperty.FullName))" onclick="$.post(this.href); location.reload(); return false;">delete</a></td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+            }
+        </fieldset>
+    </div>
+</div>
+}

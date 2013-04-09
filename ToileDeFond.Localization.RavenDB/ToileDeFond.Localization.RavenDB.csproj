@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B7770951-ADFC-45D2-BF86-9B6B96041DC5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ToileDeFond.Localization.RavenDB</RootNamespace>
+    <AssemblyName>ToileDeFond.Localization.RavenDB</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Raven.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RavenDB.Client.2.0.2261\lib\net40\Raven.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight, Version=2.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RavenDB.Client.2.0.2261\lib\net40\Raven.Client.Lightweight.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ModuleInitializer.cs" />
+    <Compile Include="LocalizationResourceIndex.cs" />
+    <Compile Include="Localizer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ToileDeFond.ContentManagement\ToileDeFond.ContentManagement.csproj">
+      <Project>{92dba506-534e-448e-b040-0f2c2e672a94}</Project>
+      <Name>ToileDeFond.ContentManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.Localization\ToileDeFond.Localization.csproj">
+      <Project>{f3648f15-d56f-4f1e-ba1f-222023ba803e}</Project>
+      <Name>ToileDeFond.Localization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.Modularity\ToileDeFond.Modularity.csproj">
+      <Project>{A962BAB6-3237-422A-A191-CA0A622BB9D2}</Project>
+      <Name>ToileDeFond.Modularity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Dependencies.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if not exist "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\" md "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\"
+copy /Y "$(TargetDir)*.*" "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\"
+if exist "$(ProjectDir)Dependencies.txt" copy /Y "$(ProjectDir)Dependencies.txt" "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\Dependencies.txt"
+if exist "$(ProjectDir)packages.config" copy /Y "$(ProjectDir)packages.config" "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\packages.config"</PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>if exist "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\" rd /s /q  "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\"</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

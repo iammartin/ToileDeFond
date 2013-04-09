@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6033B9F9-4EF9-43F5-A19E-07F7DDC004FC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ToileDeFond.Tools</RootNamespace>
+    <AssemblyName>ToileDeFond.Tools</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.1.1.0\lib\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.DynamicProxy2">
+      <HintPath>..\packages\Castle.DynamicProxy.2.1.0\lib\Castle.DynamicProxy2.dll</HintPath>
+    </Reference>
+    <Reference Include="ClaySharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ClaySharp.1.0.0\lib\ClaySharp.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RavenDB.Client.2.0.2261\lib\net40\Raven.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight, Version=2.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RavenDB.Client.2.0.2261\lib\net40\Raven.Client.Lightweight.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdministrationTools.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClayJsonConverter.cs" />
+    <Compile Include="DiscoveryTests.cs" />
+    <Compile Include="Document.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="RavenDBDiscovery.cs" />
+    <Compile Include="Starter.cs" />
+    <Compile Include="RavenDBTools.cs" />
+    <Compile Include="RoutingTools.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ToileDeFond.ContentManagement.DefaultImplementation\ToileDeFond.ContentManagement.DefaultImplementation.csproj">
+      <Project>{1317c44c-3021-41c9-8582-69786dee094b}</Project>
+      <Name>ToileDeFond.ContentManagement.DefaultImplementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.ContentManagement.RavenDB\ToileDeFond.ContentManagement.RavenDB.csproj">
+      <Project>{050a6dba-42f3-41b1-851b-f306599cd8a1}</Project>
+      <Name>ToileDeFond.ContentManagement.RavenDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.ContentManagement.Reflection.DefaultImplementation\ToileDeFond.ContentManagement.Reflection.DefaultImplementation.csproj">
+      <Project>{62fca0e3-036f-4268-9b96-e38249980c01}</Project>
+      <Name>ToileDeFond.ContentManagement.Reflection.DefaultImplementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.ContentManagement.Reflection\ToileDeFond.ContentManagement.Reflection.csproj">
+      <Project>{88ba0284-d5d2-46df-a88d-9c09813225a1}</Project>
+      <Name>ToileDeFond.ContentManagement.Reflection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.ContentManagement\ToileDeFond.ContentManagement.csproj">
+      <Project>{92dba506-534e-448e-b040-0f2c2e672a94}</Project>
+      <Name>ToileDeFond.ContentManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.Modularity\ToileDeFond.Modularity.csproj">
+      <Project>{a962bab6-3237-422a-a191-ca0a622bb9d2}</Project>
+      <Name>ToileDeFond.Modularity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.Routing.FirstImplementation\ToileDeFond.Routing.FirstImplementation.csproj">
+      <Project>{e3382aa2-c5de-4ae7-b6b7-acc0469011e2}</Project>
+      <Name>ToileDeFond.Routing.FirstImplementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.Routing\ToileDeFond.Routing.csproj">
+      <Project>{43d75b8c-79c3-4d4d-94c4-b247b4554cd8}</Project>
+      <Name>ToileDeFond.Routing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.Utilities.RavenDB\ToileDeFond.Utilities.RavenDB.csproj">
+      <Project>{809693C9-FCB4-494B-A9AB-0CC6CA9D098D}</Project>
+      <Name>ToileDeFond.Utilities.RavenDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.Utilities\ToileDeFond.Utilities.csproj">
+      <Project>{13b6910f-2a5c-4fb3-a75f-c17d98bcf8f9}</Project>
+      <Name>ToileDeFond.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.Website.Administration\ToileDeFond.Website.Administration.csproj">
+      <Project>{f9421463-913c-438a-a6a5-e39307fb1105}</Project>
+      <Name>ToileDeFond.Website.Administration</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

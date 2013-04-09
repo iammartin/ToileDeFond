@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F3648F15-D56F-4F1E-BA1F-222023BA803E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ToileDeFond.Localization</RootNamespace>
+    <AssemblyName>ToileDeFond.Localization</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CultureManager.cs" />
+    <Compile Include="ICultureManager.cs" />
+    <Compile Include="ILocalizer.cs" />
+    <Compile Include="LocalizationResource.cs" />
+    <Compile Include="ModuleInitializer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ToileDeFond.ContentManagement.Reflection\ToileDeFond.ContentManagement.Reflection.csproj">
+      <Project>{88BA0284-D5D2-46DF-A88D-9C09813225A1}</Project>
+      <Name>ToileDeFond.ContentManagement.Reflection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.Modularity\ToileDeFond.Modularity.csproj">
+      <Project>{A962BAB6-3237-422A-A191-CA0A622BB9D2}</Project>
+      <Name>ToileDeFond.Modularity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Dependencies.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if not exist "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\" md "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\"
+copy /Y "$(TargetDir)*.*" "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\"
+if exist "$(ProjectDir)Dependencies.txt" copy /Y "$(ProjectDir)Dependencies.txt" "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\Dependencies.txt"
+if exist "$(ProjectDir)packages.config" copy /Y "$(ProjectDir)packages.config" "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\packages.config"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>if exist "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\" rd /s /q  "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\"</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

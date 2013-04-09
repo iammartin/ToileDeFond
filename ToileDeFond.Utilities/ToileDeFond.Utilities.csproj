@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{13B6910F-2A5C-4FB3-A75F-C17D98BCF8F9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ToileDeFond.Utilities</RootNamespace>
+    <AssemblyName>ToileDeFond.Utilities</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cultures.cs" />
+    <Compile Include="DropDownListAttribute.cs" />
+    <Compile Include="HtmlHelpers.cs" />
+    <Compile Include="MultiSelectListItem.cs" />
+    <Compile Include="Paging.cs" />
+    <Compile Include="ModuleInitializer.cs" />
+    <Compile Include="ReadOnlyDictionary.cs" />
+    <Compile Include="ExceptionHandling.cs" />
+    <Compile Include="ExceptionMessages.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="HtmlHelperExtensions.cs" />
+    <Compile Include="PagedCollection.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegularExpressions.cs" />
+    <Compile Include="Sugar.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ToileDeFond.Modularity.Web\ToileDeFond.Modularity.Web.csproj">
+      <Project>{DA7972E9-C751-4331-8F01-86FC955BD7FC}</Project>
+      <Name>ToileDeFond.Modularity.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.Modularity\ToileDeFond.Modularity.csproj">
+      <Project>{A962BAB6-3237-422A-A191-CA0A622BB9D2}</Project>
+      <Name>ToileDeFond.Modularity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Shared\EditorTemplates\_DropDownList.cshtml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if not exist "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\" md "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\"
+copy /Y "$(TargetDir)*.*" "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\"
+if exist "$(ProjectDir)Dependencies.txt" copy /Y "$(ProjectDir)Dependencies.txt" "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\Dependencies.txt"
+if exist "$(ProjectDir)packages.config" copy /Y "$(ProjectDir)packages.config" "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\packages.config"</PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>if exist "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\" rd /s /q  "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\"</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

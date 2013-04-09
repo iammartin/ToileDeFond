@@ -1,0 +1,1 @@
+﻿On reference (voir fichier dependencies.txt) ToileDeFond.Website.Administration pour pouvoir utiliser ses bundles js/css

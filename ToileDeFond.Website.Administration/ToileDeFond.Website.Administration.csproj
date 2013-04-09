@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F9421463-913C-438A-A6A5-E39307FB1105}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ToileDeFond.Website.Administration</RootNamespace>
+    <AssemblyName>ToileDeFond.Website.Administration</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Raven.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RavenDB.Client.2.0.2261\lib\net40\Raven.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight, Version=2.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RavenDB.Client.2.0.2261\lib\net40\Raven.Client.Lightweight.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Optimization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AdminBundleConfig.cs" />
+    <Compile Include="App_Start\ModuleInitializer.cs" />
+    <Compile Include="App_Start\ModuleAreaRegistration.cs" />
+    <Compile Include="ContentTypeExtensions.cs" />
+    <Compile Include="Controllers\AdministrationController.cs" />
+    <Compile Include="Controllers\ContentTypePropertyController.cs" />
+    <Compile Include="Controllers\ContentTypeController.cs" />
+    <Compile Include="Controllers\ContentController.cs" />
+    <Compile Include="Controllers\ModuleController.cs" />
+    <Compile Include="Controllers\DefaultPropertyEditorsController.cs" />
+    <Compile Include="IPropertyEditor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IPropertyEditorRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\ContentsViewModel.cs" />
+    <Compile Include="Models\ContentTypeViewModel.cs" />
+    <Compile Include="Models\PropertyEditorViewModelBase.cs" />
+    <Compile Include="Models\EditContentTypeViewModel.cs" />
+    <Compile Include="Models\EditModuleViewModel.cs" />
+    <Compile Include="Models\EmbeddedContentPropertyEditorViewModel.cs" />
+    <Compile Include="Models\IntegerPropertyEditorViewModel.cs" />
+    <Compile Include="Models\SingleTextLinePropertyEditorViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\ModuleViewModel.cs" />
+    <Compile Include="Models\ModulesViewModel.cs" />
+    <Compile Include="PropertyEditor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PropertyEditorIndex.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PropertyEditorRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\Administration\_ViewStart.generated.cs">
+      <DependentUpon>_ViewStart.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Dependencies.txt" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Administration\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ToileDeFond.ContentManagement.RavenDB\ToileDeFond.ContentManagement.RavenDB.csproj">
+      <Project>{050A6DBA-42F3-41B1-851B-F306599CD8A1}</Project>
+      <Name>ToileDeFond.ContentManagement.RavenDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.ContentManagement.Reflection\ToileDeFond.ContentManagement.Reflection.csproj">
+      <Project>{88BA0284-D5D2-46DF-A88D-9C09813225A1}</Project>
+      <Name>ToileDeFond.ContentManagement.Reflection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.ContentManagement\ToileDeFond.ContentManagement.csproj">
+      <Project>{92DBA506-534E-448E-B040-0F2C2E672A94}</Project>
+      <Name>ToileDeFond.ContentManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.Localization\ToileDeFond.Localization.csproj">
+      <Project>{F3648F15-D56F-4F1E-BA1F-222023BA803E}</Project>
+      <Name>ToileDeFond.Localization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.Modularity.Web\ToileDeFond.Modularity.Web.csproj">
+      <Project>{DA7972E9-C751-4331-8F01-86FC955BD7FC}</Project>
+      <Name>ToileDeFond.Modularity.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.Modularity\ToileDeFond.Modularity.csproj">
+      <Project>{A962BAB6-3237-422A-A191-CA0A622BB9D2}</Project>
+      <Name>ToileDeFond.Modularity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.Utilities.RavenDB\ToileDeFond.Utilities.RavenDB.csproj">
+      <Project>{809693C9-FCB4-494B-A9AB-0CC6CA9D098D}</Project>
+      <Name>ToileDeFond.Utilities.RavenDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.Utilities\ToileDeFond.Utilities.csproj">
+      <Project>{13B6910F-2A5C-4FB3-A75F-C17D98BCF8F9}</Project>
+      <Name>ToileDeFond.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Administration\Modules.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Shared\_AdminLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Administration\_ViewStart.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>_ViewStart.generated.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Administration\Contents.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DefaultPropertyEditors\_SingleLineText.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DefaultPropertyEditors\_Integer.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DefaultPropertyEditors\_EmbeddedContent.cshtml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if not exist "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\" md "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\"
+copy /Y "$(TargetDir)*.*" "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\"
+if exist "$(ProjectDir)Dependencies.txt" copy /Y "$(ProjectDir)Dependencies.txt" "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\Dependencies.txt"
+if exist "$(ProjectDir)packages.config" copy /Y "$(ProjectDir)packages.config" "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\packages.config"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>if exist "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\" rd /s /q  "$(SolutionDir)$(SolutionName).Website\App_Data\Modules\$(ProjectName)\"</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

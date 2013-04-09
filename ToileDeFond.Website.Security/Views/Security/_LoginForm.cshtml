@@ -1,0 +1,32 @@
+﻿@using ToileDeFond.Utilities
+@model ToileDeFond.Security.ViewModels.LoginModel
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { ReturnUrl = ViewBag.ReturnUrl, @action = "/login?returnurl=" + @Request.QueryString["ReturnUrl"] }))
+{
+    @Html.AntiForgeryToken()
+
+    <fieldset>
+        <legend>Use a local account to log in</legend>
+        
+        @Html.ValidationSummary(true)
+
+        @Html.LabelFor(m => m.UserName)
+        @Html.TextBoxFor(m => m.UserName)
+        @Html.ValidationMessageFor(m => m.UserName)
+
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password)
+        @Html.ValidationMessageFor(m => m.Password)
+
+        @*Bootstrap <label class="checkbox">
+            <input type="checkbox"> Check me out
+        </label>*@
+        @*@Html.CheckBoxFor(m => m.RememberMe)
+        @Html.LabelFor(m => m.RememberMe)*@
+        @Html.BootstrapCheckBoxFor(m => m.RememberMe)
+
+        <div>
+            <button type="submit" class="btn">Login</button>
+        </div>
+    </fieldset>
+}

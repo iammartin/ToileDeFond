@@ -1,0 +1,133 @@
+﻿@using System.Reflection
+@using System.Text
+@using ToileDeFond.ContentManagement
+@using ToileDeFond.Modularity.Web.Metadata
+@model ToileDeFond.ContentManagement.Content
+
+@*if (ViewData.TemplateInfo.TemplateDepth > 1)
+{
+    @ViewData.ModelMetadata.SimpleDisplayText
+}
+else
+{*@
+
+<p>Content</p>
+
+@foreach (var prop in ViewData.ModelMetadata.Properties.Where(pm => ShouldShow(pm, ViewData.TemplateInfo)))
+    {
+        if (prop.HideSurroundingHtml)
+        {
+            @Html.Editor(prop.PropertyName)
+        }
+        else
+        {
+            var isValid = !(ViewData.ModelState[prop.PropertyName] != null && ViewData.ModelState[prop.PropertyName].Errors != null && ViewData.ModelState[prop.PropertyName].Errors.Count > 0);
+            
+            <div class="control-group@(isValid ? "" : " error")">
+                @if (prop.TemplateHint == "_DropDownList")
+                {
+                    <div class="controls">
+                        @Html.DropDownList(prop.PropertyName, GetValues(prop))
+                        @Html.ValidationMessage(prop.PropertyName, new {@class = isValid ? "" : "help-inline"})
+                    </div>
+                }
+                else if (prop.TemplateHint == "_MultiSelectList")
+                {
+                    <div class="controls">
+                        @Html.MultiSelectList(prop.PropertyName, GetMultiSelectListValues(prop), new {@class = "lou-multi-select"})
+                        @Html.ValidationMessage(prop.PropertyName, new {@class = isValid ? "" : "help-inline"})
+                    </div>
+                }
+                else if (prop.ModelType == typeof (bool))
+                {
+                    <div class="controls">
+                        @Html.BootstrapCheckBox(prop.PropertyName)
+                        @Html.ValidationMessage(prop.PropertyName, new {@class = isValid ? "" : "help-inline"})
+                    </div>
+                }
+                else
+                {
+                    @Html.Label(prop.PropertyName, new {@class = "control-label"})
+                    <div class="controls">
+                        @Html.Editor(prop.PropertyName)
+                        @Html.ValidationMessage(prop.PropertyName, new {@class = isValid ? "" : "help-inline"})
+                    </div>
+                }
+                
+                @if (prop.AdditionalValues.ContainsKey("Hint"))
+                {
+                    <span class="help-block">@prop.AdditionalValues["Hint"]</span>
+                }
+            </div>
+        }
+    }
+@*}*@
+
+
+@functions
+{
+    private static bool ShouldShow(ModelMetadata metadata, TemplateInfo templateInfo)
+    {
+        return (((metadata.ShowForEdit /*&& (metadata.ModelType != typeof(System.Data.EntityState))*/) && (metadata.ModelType == typeof(Content)|| !metadata.IsComplexType || !metadata.TemplateHint.IsNullOrEmpty())) && !templateInfo.Visited(metadata));
+    }
+}
+
+@functions
+{
+
+    private IEnumerable<SelectListItem> GetValues(ModelMetadata metadata)
+    {
+        //var parentType = this.ViewData.ModelMetadata.ContainerType;
+        //var metadata = ModelMetadataProviders.Current.GetMetadataForType(null, parentType);
+        var containerInstance = metadata.GetContainerInstance();
+
+        if (containerInstance == null)
+            return Enumerable.Empty<SelectListItem>();
+        
+        var containerType = metadata.ContainerType;
+        var allowedValuesMethodName = "Get" + metadata.PropertyName + "Values";
+        var getValuesMethod = containerType.GetProperty(allowedValuesMethodName, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+
+        if (getValuesMethod == null)
+        {
+            throw new Exception("Unable to find instance method " + containerType.Name + "." + allowedValuesMethodName);
+        }
+        
+        //var items = containerInstance.GetAllowedSerializedValues(containerType, metadata.PropertyName);
+        //if (metadata.IsNullableSerializedValueType)
+        //{
+        //    items = SingleEmptyItem.Concat(items);
+        //}
+
+        var result = getValuesMethod.GetValue(containerInstance, null);
+        return (IEnumerable<SelectListItem>)result;
+    }
+
+    private IEnumerable<MultiSelectListItem> GetMultiSelectListValues(ModelMetadata metadata)
+    {
+        //var parentType = this.ViewData.ModelMetadata.ContainerType;
+        //var metadata = ModelMetadataProviders.Current.GetMetadataForType(null, parentType);
+        var containerInstance = metadata.GetContainerInstance();
+
+        if (containerInstance == null)
+            return Enumerable.Empty<MultiSelectListItem>();
+
+        var containerType = metadata.ContainerType;
+        var allowedValuesMethodName = "Get" + metadata.PropertyName + "Values";
+        var getValuesMethod = containerType.GetProperty(allowedValuesMethodName, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+
+        if (getValuesMethod == null)
+        {
+            throw new Exception("Unable to find instance method " + containerType.Name + "." + allowedValuesMethodName);
+        }
+
+        //var items = containerInstance.GetAllowedSerializedValues(containerType, metadata.PropertyName);
+        //if (metadata.IsNullableSerializedValueType)
+        //{
+        //    items = SingleEmptyItem.Concat(items);
+        //}
+
+        var result = getValuesMethod.GetValue(containerInstance, null);
+        return (IEnumerable<MultiSelectListItem>)result;
+    }
+}

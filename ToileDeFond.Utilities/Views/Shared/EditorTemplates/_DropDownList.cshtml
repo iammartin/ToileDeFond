@@ -1,0 +1,26 @@
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using Modularity.Web.Metadata
+@model System.Object
+
+@Html.DropDownListFor(x => x, GetValues())
+
+@functions
+{
+
+    private IEnumerable<SelectListItem> GetValues()
+    {
+        var metadata = ModelMetadata.FromStringExpression(ViewData.ModelMetadata.PropertyName, ViewData);
+        var containerInstance = metadata.GetContainerInstance();
+        var containerType = metadata.ContainerType;
+        //var items = containerInstance.GetAllowedValues(containerType, metadata.PropertyName);
+        //if (metadata.IsNullableValueType)
+        //{
+        //    items = SingleEmptyItem.Concat(items);
+        //}
+        
+        throw new NotImplementedException();
+        
+    }
+
+}

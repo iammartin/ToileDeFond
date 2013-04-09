@@ -1,0 +1,46 @@
+﻿
+@using System.Globalization
+@using System.Text
+@using ToileDeFond.Utilities
+@using ToileDeFond.ContentManagement
+@using ToileDeFond.Website.Administration
+@model ToileDeFond.Website.Administration.Models.ContentsViewModel
+<h1>Contents</h1>
+
+<p><a href="@(new StringBuilder("/admin/content")
+    .AddQueryParam("contenttypefullname", Model.ContentType.FullName)
+    .AddQueryParamIfAlreadyThere("culture"))">Create content</a></p>
+  
+@{
+    var gridProperties = Model.ContentType.GetGridProperties();
+}
+
+<table>
+        <tr>@*TODO: Trouver un moyen de dire quel identifiant utilisé (grace au metadata)*@
+            @foreach (var property in gridProperties)
+            {
+                <th>@property.Name</th>
+            }
+            <th>Culture</th>
+            <th></th>
+        </tr>
+        @foreach (var content in Model.Contents)
+        {
+            var contentTranslationVersion = content.GetVersion(Model.Culture) ?? content.GetVersion(content.Translations.First().Culture);
+            
+            <tr>
+                 @foreach (var property in gridProperties)
+                 {
+                     <td><a href="@(new StringBuilder("/admin/content")
+                        .AddQueryParam("contenttypefullname", content.ContentType.FullName)
+                        .AddQueryParam("contentid", content.Id.ToString())
+                        .AddQueryParamIfAlreadyThere("culture"))">@(contentTranslationVersion.Culture.Equals(Model.Culture) ? contentTranslationVersion[property.Name].GetValue<string>() : "[ " + contentTranslationVersion[property.Name].GetValue<string>() + " ]")</a></td>
+                 }
+                <td>@contentTranslationVersion.Culture</td>
+                <td><a href="@(new StringBuilder("/admin/delete-content")
+                    .AddQueryParam("contenttypefullname", content.ContentType.FullName)
+                    .AddQueryParamIfAlreadyThere("culture")
+                    .AddQueryParam("id", content.Id.ToString()))" onclick="$.post(this.href); location.reload(); return false;">Delete</a></td>
+            </tr>
+        }
+    </table>

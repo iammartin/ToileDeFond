@@ -1,0 +1,12 @@
+﻿
+@using System.Globalization
+@using System.Text
+@using ToileDeFond.Utilities
+@model ToileDeFond.Website.Administration.Models.EditModuleViewModel
+
+
+@using(Html.BeginForm())
+{
+    @Html.EditorForModel();
+    <div><button type="submit">Submit</button></div>
+}

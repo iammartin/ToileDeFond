@@ -1,0 +1,19 @@
+﻿@using ToileDeFond.Utilities
+@model ToileDeFond.Security.ViewModels.LoginModel
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { ReturnUrl = ViewBag.ReturnUrl, @action = "/login?returnurl=" + @Request.QueryString["ReturnUrl"], @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Use a local account to log in</legend>
+        
+        @Html.EditorForModel()
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Login</button> <a href="@("/register?returnurl=" + @Request.QueryString["ReturnUrl"])">Register</a> if you don't have an account.
+            @*<button type="button" class="btn">Cancel</button>*@
+        </div>
+    </fieldset>
+}

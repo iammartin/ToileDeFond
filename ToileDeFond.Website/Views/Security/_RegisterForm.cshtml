@@ -1,0 +1,19 @@
+﻿@using ToileDeFond.Utilities
+@model ToileDeFond.Security.ViewModels.RegisterModel
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { ReturnUrl = ViewBag.ReturnUrl, @action = "/register?returnurl=" + @Request.QueryString["ReturnUrl"], @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Create a new account</legend>
+
+        @Html.EditorForModel()
+
+        <div class="form-actions">
+            <button type="submit" class="btn">Register</button> <a href="@("/login?returnurl=" + @Request.QueryString["ReturnUrl"])">Sign in</a> if you already have an account.
+        </div>
+    </fieldset>
+}

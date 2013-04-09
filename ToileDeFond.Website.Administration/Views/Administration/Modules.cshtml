@@ -1,0 +1,54 @@
+﻿@using ToileDeFond.ContentManagement.Reflection
+@using ToileDeFond.ContentManagement.Reflection
+@using ToileDeFond.Utilities
+@model ToileDeFond.Website.Administration.Models.ModulesViewModel
+<h1>Modules</h1>
+
+@if (Model.ModuleInfos.Any())
+{
+    if(!Model.Message.IsNullOrEmpty())
+     {
+         <ul>
+             <li>@Model.Message</li>
+         </ul>
+     }
+    
+    <table>
+        <tr>
+            <th>Module Name</th>
+            <th>Installed Version</th>
+            <th>Current Version</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+        @foreach (var module in Model.ModuleInfos)
+        {
+            <tr>
+                <td><a href="@("/admin/module?modulename=" + module.Name)">@module.Name</a></td>
+                <td>@module.InstalledVersion</td>
+                <td>@module.CurrentVersion</td>
+                <td>@GetStatusText(module)</td>
+                <td><form style="display: inline;" method="POST" action="/admin/module?moduleName=@module.Name"><button type="submit" @(module.Status == ModuleStates.UpToDate || module.Status == ModuleStates.Unreferenced ? "disabled=disabled" : "")>@(module.Status == ModuleStates.NotYetInstalled ? "Install" : "Update")</button></form> <button @(module.Status == ModuleStates.NotYetInstalled ? "disabled=disabled" : "")>Unistall</button></td>
+            </tr>
+        }
+    </table>
+}
+
+@functions {
+
+    private string GetStatusText(ModuleInfo moduleInfo)
+    {
+        switch (moduleInfo.Status)
+        {
+            case ModuleStates.UpToDate:
+                return "Up to date";
+            case ModuleStates.Unreferenced:
+                return "Unreferenced";
+            case ModuleStates.ToBeUpdated:
+                return "To be updated";
+            default:
+                return "Not installed";
+        }
+    }
+
+}

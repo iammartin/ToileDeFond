@@ -1,0 +1,13 @@
+﻿@using System.Globalization
+@using System.Text
+@using ToileDeFond.Utilities
+@model ToileDeFond.Website.Administration.Models.PropertyEditorViewModelBase
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "EditContentTypePropertyForm" }))
+{
+    <div id="form-container">@Html.EditorForModel()</div>
+    <div class="form-actions">
+        <button type="submit" disabled="disabled" id="SubmitButton" class="btn btn-primary">Save</button>
+    </div>
+}

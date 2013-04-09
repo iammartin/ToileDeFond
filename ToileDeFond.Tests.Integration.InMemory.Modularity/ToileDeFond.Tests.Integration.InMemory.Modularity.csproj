@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DA9BA0EC-C0D2-48C7-B72A-26842484BCE0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ToileDeFond.Tests.Integration.InMemory.Modularity</RootNamespace>
+    <AssemblyName>ToileDeFond.Tests.Integration.InMemory.Modularity</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ModulatityTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ToileDeFond.Modularity\ToileDeFond.Modularity.csproj">
+      <Project>{A962BAB6-3237-422A-A191-CA0A622BB9D2}</Project>
+      <Name>ToileDeFond.Modularity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.Tests.Common\ToileDeFond.Tests.Common.csproj">
+      <Project>{29EF00E4-0714-4512-B878-F216BA2320E3}</Project>
+      <Name>ToileDeFond.Tests.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.Tests.FakeModules.First\ToileDeFond.Tests.FakeModules.First.csproj">
+      <Project>{1BFDBCD2-5838-4B09-82D2-FD0A5B187251}</Project>
+      <Name>ToileDeFond.Tests.FakeModules.First</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.Tests.FakeModules.Second\ToileDeFond.Tests.FakeModules.Second.csproj">
+      <Project>{53874505-a4d2-48f4-8114-6b4eb048f0a4}</Project>
+      <Name>ToileDeFond.Tests.FakeModules.Second</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.Tests.FakeModules.Third\ToileDeFond.Tests.FakeModules.Third.csproj">
+      <Project>{8438f9e7-c362-4a34-a73f-5fdcbc901ec6}</Project>
+      <Name>ToileDeFond.Tests.FakeModules.Third</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToileDeFond.Tests.Integration.InMemory.Common\ToileDeFond.Tests.Integration.InMemory.Common.csproj">
+      <Project>{601f7fe6-9f84-454f-bb69-ebce36a54a3a}</Project>
+      <Name>ToileDeFond.Tests.Integration.InMemory.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

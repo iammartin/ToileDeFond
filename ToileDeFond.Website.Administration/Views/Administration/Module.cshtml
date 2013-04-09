@@ -1,0 +1,27 @@
+﻿@using System.Text
+@using ToileDeFond.Utilities
+@model ToileDeFond.Website.Administration.Models.ModuleViewModel
+<h1>Modules</h1>
+
+@if (Model.Module != null)
+{
+    <h2>@Model.Module.Name</h2>
+    <h3>Content Types</h3>
+    
+    if (Model.Module.ContentTypes.Any())
+    {
+        <table>
+            <tr>
+                <th>Content Type Name</th>
+                <th></th>
+            </tr>
+            @foreach (var contentType in Model.Module.ContentTypes)
+            {
+                <tr>
+                    <td>@contentType.Name</td>
+                    <td><a href="@(new StringBuilder(Request.RawUrl.Replace("/admin/module", "/admin/contenttype")).AddQueryParam("contenttypename", contentType.Name))">edit</a></td>
+                </tr>
+            }
+        </table>
+    }
+}

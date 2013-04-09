@@ -1,0 +1,42 @@
+﻿@using System.Text
+@using ToileDeFond.Utilities
+@model ToileDeFond.Website.Administration.Models.ModuleViewModel
+
+
+@if (Model.Module != null)
+{
+<div class="row">
+    <div class="span12">
+       <a href="@(new StringBuilder("/admin/edit-content-type")
+            .AddQueryParam("modulename", Model.Module.Name))" class="btn btn-large pull-right btn-success">Create content type</a>
+    </div>
+</div>
+    
+   
+<div class="row">
+    <div class="span12">
+        <fieldset>
+            <legend>Content types of module @Model.Module.Name</legend>
+            @if (Model.Module.ContentTypes.Any())
+            {
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Content Type Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var contentType in Model.Module.ContentTypes)
+                {
+                    <tr>
+                        <td><a href="@(new StringBuilder("/admin/contenttype")
+                                .AddQueryParam("contenttypefullname", contentType.FullName))">@contentType.Name</a></td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+            }
+        </fieldset>
+    </div>
+</div>
+}

@@ -1,0 +1,22 @@
+﻿
+@using System.Globalization
+@using System.Text
+@using ToileDeFond.Utilities
+@model ToileDeFond.Website.Administration.Models.EditContentTypeViewModel
+
+
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            @using (Html.BeginForm(new { @class = "form-horizontal" }))
+            {
+                @Html.EditorForModel()
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
