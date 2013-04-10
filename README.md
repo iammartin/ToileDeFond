@@ -4,7 +4,7 @@ ToileDeFond is a backend ([.Net](http://www.microsoft.com/net)) modularity frame
 
 ####Important:
 * This is mostly a pet project, not intended to be used in production. Use at your own risk!
-* Some modules make use of third-party libraries ([RavenDB](http://ravendb.net/) for example), make sure you're compliant with all licenses
+* Some modules make use of third-party libraries ([RavenDB](http://ravendb.net/) for example), make sure you're compliant with all licenses.
 
 
 ## Most notable features
