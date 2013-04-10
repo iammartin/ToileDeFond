@@ -26,7 +26,7 @@ Help with managing an open-source project would be wonderful as this is my first
 Thanks!
 
 
-## Versioning
+## Versioning (todo)
 
 For transparency and insight into our release cycle, and for striving to maintain backward compatibility, ToileDeFond will be maintained under the Semantic Versioning guidelines as much as possible.
 
