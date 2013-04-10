@@ -20,7 +20,7 @@ ToileDeFond is a backend ([.Net](http://www.microsoft.com/net)) modularity frame
 ## How it works (todo)
 
 
-## Authors
+## Author
 
 **Maxime Séguin**
 
