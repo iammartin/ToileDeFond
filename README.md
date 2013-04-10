@@ -4,3 +4,4 @@ ToileDeFond is a backend modularity framework for web (mostly) or desktop applic
 
 ## Most notable features
 *[ASP.NET MVC](http://www.asp.net/mvc) Modularity (with the help of [MEF](http://mef.codeplex.com/))
+*Content Management (with the help of RavenDB... could be implemented with another persistence tool)
