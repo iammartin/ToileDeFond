@@ -26,7 +26,7 @@ ToileDeFond is a backend ([.Net](http://www.microsoft.com/net)) modularity frame
 
 + [http://twitter.com/w3max](http://twitter.com/w3max)
 + [http://github.com/w3max](http://github.com/w3max)
-+ [http://www.maximeseguin.com](www.maximeseguin.com)
++ [http://www.maximeseguin.com](http://www.maximeseguin.com)
 
 
 ## Copyright and license
