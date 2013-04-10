@@ -20,6 +20,12 @@ ToileDeFond is a backend ([.Net](http://www.microsoft.com/net)) modularity frame
 ## How it works (todo)
 
 
+## Contributing
+Help with managing an open-source project would be wonderful as this is my first GitHub project... Any contribution is appreciated, this is not a closed product!
+
+Thanks!
+
+
 ## Author
 
 **Maxime Séguin**
