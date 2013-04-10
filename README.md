@@ -14,6 +14,12 @@ ToileDeFond is a backend ([.Net](http://www.microsoft.com/net)) modularity frame
 * Simple Membership (rewriten to work with [RavenDB](http://ravendb.net/) - only a proof of concept at this point)
 
 
+## Getting started (todo)
+
+
+## How it works (todo)
+
+
 ## Authors
 
 **Maxime Séguin**
