@@ -1,6 +1,6 @@
 # ToileDeFond
 
-ToileDeFond is a backend (.Net) modularity framework for web (mostly) or desktop applications, created and maintained by [Maxime Séguin](http://www.maximeseguin.com). The root idea was to build a CMS that gets out of your way by letting the developpers work as if there was no CMS while encouraging them to build small reusable modules.
+ToileDeFond is a backend ([.Net](http://www.microsoft.com/net)) modularity framework for web (mostly) or desktop applications, created and maintained by [Maxime Séguin](http://www.maximeseguin.com). The root idea was to build a CMS that gets out of your way by letting the developpers work as if there was no CMS while encouraging them to build small reusable modules.
 
 ####Important:
 * This is mostly a pet project, not intended to be used in production. Use at your own risk!
