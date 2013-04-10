@@ -2,7 +2,9 @@
 
 ToileDeFond is a backend modularity framework for web (mostly) or desktop applications, created and maintained by [Maxime Séguin](http://www.maximeseguin.com). The root idea was to build a CMS that gets out of your way by letting the developpers work as if there was no CMS while encouraging them to build small reusable modules.
 
-####Important: This is mostly a pet project, not intended to be used in production. Use at your own risk!
+####Important:
+* This is mostly a pet project, not intended to be used in production. Use at your own risk!
+* Some modules make use of third-party libraries ([RavenDB](http://ravendb.net/) for example), make sure you're compliant with all licenses
 
 
 ## Most notable features
