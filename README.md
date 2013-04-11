@@ -8,8 +8,8 @@ ToileDeFond is a backend ([.Net](http://www.microsoft.com/net)) modularity frame
 
 
 ## Most notable features
-* [ASP.NET MVC](http://www.asp.net/mvc) Modularity (with the help of [MEF](http://mef.codeplex.com/))
-* Content Management (with the help of [RavenDB](http://ravendb.net/)... could be implemented with another persistence tool)
+* [ASP.NET MVC](http://www.asp.net/mvc) Modularity (using [MEF](http://mef.codeplex.com/))
+* Content Management (using of [RavenDB](http://ravendb.net/)... could be implemented with another persistence tool)
   * Frontend scaffolding ([ASP.NET MVC](http://www.asp.net/mvc) Based) //In progress...
 * Simple Membership (rewriten to work with [RavenDB](http://ravendb.net/) - only a proof of concept at this point)
 
